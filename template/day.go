@@ -3,7 +3,6 @@ package dayXX
 import (
 	"fmt"
 
-	"github.com/tofoss/aoc-go/pkg/readers"
 	"github.com/tofoss/aoc-go/pkg/registry"
 	"github.com/tofoss/aoc-go/pkg/solver"
 )
@@ -12,8 +11,8 @@ const year = 1970
 const day = 0
 
 func init() {
-	registry.Register(year, day, func(inputFile string) (solver.Solver, error) {
-		return New(inputFile)
+	registry.Register(year, day, func(input []string) (solver.Solver, error) {
+		return New(input)
 	})
 }
 
@@ -21,12 +20,7 @@ type Solution struct {
 	input []string
 }
 
-func New(inputFile string) (*Solution, error) {
-	input, err := readers.ReadLines(inputFile)
-	if err != nil {
-		return nil, err
-	}
-
+func New(input []string) (*Solution, error) {
 	return &Solution{input}, nil
 }
 
