@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	_ "github.com/tofoss/aoc-go/2021/day"
+	_ "github.com/tofoss/aoc-go/2021/day01"
 	"github.com/tofoss/aoc-go/pkg/registry"
 )
 
