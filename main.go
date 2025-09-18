@@ -22,7 +22,7 @@ func main() {
 	err := runDay(year, day, useExample)
 
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }
