@@ -16,3 +16,12 @@ go run . -year 2021 -day 1 -example  # Run with example input
 ```
 
 Input files go in `input/YEAR/DAY/actual.txt` and `input/YEAR/DAY/example.txt`.
+
+## Auto-fetch inputs (optional)
+
+To automatically download inputs, create a `.env` file with your session cookie:
+
+1. Log in to [adventofcode.com](https://adventofcode.com)
+2. Open dev tools (F12) → Application/Storage → Cookies
+3. Copy the `session` cookie value
+4. Add to `.env`: `AOC_SESSION_COOKIE=your_cookie_here`
