@@ -79,7 +79,7 @@ func runDay(year, day int, useExample bool) error {
 	if err != nil {
 		return err
 	}
-	fmt.Print(p1)
+	fmt.Printf("part one: %s\n", p1)
 	timeAfterP1 := time.Now()
 	duration := timeAfterP1.Sub(timeBeforeP1)
 	fmt.Printf("time elapsed: %v\n", duration)
@@ -88,7 +88,7 @@ func runDay(year, day int, useExample bool) error {
 	if err != nil {
 		return err
 	}
-	fmt.Print(p2)
+	fmt.Printf("part two: %s\n", p2)
 	timeAfterP2 := time.Now()
 	duration = timeAfterP2.Sub(timeAfterP1)
 	fmt.Printf("time elapsed: %v\n", duration)
