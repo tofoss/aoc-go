@@ -4,11 +4,13 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/joho/godotenv"
 	_ "github.com/tofoss/aoc-go/2021/day01"
 	_ "github.com/tofoss/aoc-go/2025/day01"
+	_ "github.com/tofoss/aoc-go/2025/day02"
 	"github.com/tofoss/aoc-go/pkg/aoc"
 	"github.com/tofoss/aoc-go/pkg/registry"
 )
@@ -16,16 +18,18 @@ import (
 func main() {
 	var year, day, part int
 	var useExample bool
+	var testInput string
 
 	flag.IntVar(&year, "year", time.Now().Year(), "Year to run")
 	flag.IntVar(&day, "day", time.Now().Day(), "Day to run")
 	flag.IntVar(&part, "part", 0, "Part to run")
 	flag.BoolVar(&useExample, "example", false, "Use example input")
+	flag.StringVar(&testInput, "input", "", "Use test input")
 	flag.Parse()
 
 	godotenv.Load()
 
-	err := runDay(year, day, part, useExample)
+	err := runDay(year, day, part, useExample, testInput)
 
 	if err != nil {
 		fmt.Println(err)
@@ -33,7 +37,7 @@ func main() {
 	}
 }
 
-func runDay(year, day, part int, useExample bool) error {
+func runDay(year, day, part int, useExample bool, testInput string) error {
 	emoji := []string{
 		"🎄",
 		"🎅",
@@ -76,6 +80,9 @@ func runDay(year, day, part int, useExample bool) error {
 	input, err := aoc.FetchInput(year, day, useExample)
 	if err != nil {
 		return err
+	}
+	if testInput != "" {
+		input = strings.Split(testInput, "\n")
 	}
 
 	solver, err := registry.Registry[year][day](input)
