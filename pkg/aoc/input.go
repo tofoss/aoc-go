@@ -24,7 +24,7 @@ func FetchInput(year, day int, example bool) ([]string, error) {
 		input, err = fetchFromAoc(year, day)
 	}
 
-	err = saveInput(year, day, input)
+	err = saveInput(year, day, input, example)
 
 	if err != nil {
 		return nil, err
@@ -75,14 +75,20 @@ func downloadInput(year, day int, sessionCookie string) ([]string, error) {
 	return strings.Split(strings.TrimSpace(string(body)), "\n"), nil
 }
 
-func saveInput(year, day int, input []string) error {
+func saveInput(year, day int, input []string, example bool) error {
 	dir := fmt.Sprintf("input/%d/%02d/", year, day)
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return err
 	}
+	var filename string
+	if example {
+		filename = "example.txt"
+	} else {
+		filename = "actual.txt"
+	}
 
-	filename := filepath.Join(dir, "actual.txt")
-	return os.WriteFile(filename, []byte(strings.Join(input, "\n")), 0644)
+	fp := filepath.Join(dir, filename)
+	return os.WriteFile(fp, []byte(strings.Join(input, "\n")), 0644)
 }
 
 func fetchFromCache(year, day int, example bool) ([]string, error) {
