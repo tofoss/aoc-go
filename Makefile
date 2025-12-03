@@ -4,6 +4,10 @@ new:
 		echo "Usage: make new YEAR=<year> DAY=<day>"; \
 		echo "Example: make new YEAR=2021 DAY=2"; \
 		exit 1; \
+	fi;
+	@if [ -f '$(YEAR)/day$(shell printf "%02d" $(DAY))/day.go' ]; then \
+		echo '$(YEAR)/day$(shell printf "%02d" $(DAY))/day.go already exists...'; \
+		exit 1; \
 	fi; \
 	mkdir -p $(YEAR)/day$(shell printf "%02d" $(DAY)); \
 	cp template/day.go $(YEAR)/day$(shell printf "%02d" $(DAY))/day.go; \
