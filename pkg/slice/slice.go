@@ -3,6 +3,8 @@ package slice
 import (
 	"fmt"
 	"strconv"
+
+	"golang.org/x/exp/constraints"
 )
 
 func MapErr[T, R any](slice []T, transform func(T) (R, error)) ([]R, error) {
@@ -34,9 +36,9 @@ func SumOfStrs(strInts []string) (int, error) {
 	return Sum(ints), nil
 }
 
-func Sum(ints []int) int {
-	sum := 0
-	for _, n := range ints {
+func Sum[T constraints.Integer | constraints.Float](numbers []T) T {
+	var sum T
+	for _, n := range numbers {
 		sum += n
 	}
 	return sum

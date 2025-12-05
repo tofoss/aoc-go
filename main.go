@@ -14,6 +14,7 @@ import (
 	"github.com/tofoss/aoc-go/pkg/aoc"
 	_ "github.com/tofoss/aoc-go/2025/day03"
 	_ "github.com/tofoss/aoc-go/2025/day04"
+	_ "github.com/tofoss/aoc-go/2025/day05"
 	"github.com/tofoss/aoc-go/pkg/registry"
 )
 
