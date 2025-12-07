@@ -43,3 +43,11 @@ func Sum[T constraints.Integer | constraints.Float](numbers []T) T {
 	}
 	return sum
 }
+
+func Multiply[T constraints.Integer | constraints.Float](numbers []T) T {
+	var sum T = 1
+	for _, n := range numbers {
+		sum *= n
+	}
+	return sum
+}
