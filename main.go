@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -16,6 +17,7 @@ import (
 	_ "github.com/tofoss/aoc-go/2025/day05"
 	_ "github.com/tofoss/aoc-go/2025/day06"
 	_ "github.com/tofoss/aoc-go/2025/day07"
+	_ "github.com/tofoss/aoc-go/2025/day08"
 	"github.com/tofoss/aoc-go/pkg/aoc"
 	"github.com/tofoss/aoc-go/pkg/registry"
 )
@@ -33,6 +35,7 @@ func main() {
 	flag.Parse()
 
 	godotenv.Load()
+	debug.SetMemoryLimit(16 << 30)
 
 	err := runDay(year, day, part, useExample, testInput)
 
