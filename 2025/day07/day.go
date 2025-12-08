@@ -106,39 +106,29 @@ func (s *Solution) Part2() (string, error) {
 		nextMoves = nextNext
 	}
 
-	paths := findAllPaths(graph, start)
+	paths := countPaths(graph, start)
 
-	return fmt.Sprintf("%d", len(paths)), nil
+	return fmt.Sprintf("%d", paths), nil
 }
 
-func findAllPaths(
-	graph map[grid.Point][]grid.Point,
-	start grid.Point,
-) [][]grid.Point {
-	var paths [][]grid.Point
-	var currentPath []grid.Point
-	visited := make(map[grid.Point]bool)
+func countPaths(graph map[grid.Point][]grid.Point, start grid.Point) int {
+	memo := make(map[grid.Point]int)
 
-	var dfs func(node grid.Point)
-	dfs = func(node grid.Point) {
-		currentPath = append(currentPath, node)
-		visited[node] = true
-
+	var dfs func(node grid.Point) int
+	dfs = func(node grid.Point) int {
 		if len(graph[node]) == 0 {
-			path := make([]grid.Point, len(currentPath))
-			copy(path, currentPath)
-			paths = append(paths, path)
-		} else {
-			for _, neighbour := range graph[node] {
-				if !visited[neighbour] {
-					dfs(neighbour)
-				}
-			}
+			return 1
 		}
-		currentPath = currentPath[:len(currentPath)-1]
-		visited[node] = false
-	}
+		if val, exists := memo[node]; exists {
+			return val
+		}
+		count := 0
 
-	dfs(start)
-	return paths
+		for _, neighbour := range graph[node] {
+			count += dfs(neighbour)
+		}
+		memo[node] = count
+		return count
+	}
+	return dfs(start)
 }
