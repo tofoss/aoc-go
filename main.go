@@ -11,11 +11,12 @@ import (
 	_ "github.com/tofoss/aoc-go/2021/day01"
 	_ "github.com/tofoss/aoc-go/2025/day01"
 	_ "github.com/tofoss/aoc-go/2025/day02"
-	"github.com/tofoss/aoc-go/pkg/aoc"
 	_ "github.com/tofoss/aoc-go/2025/day03"
 	_ "github.com/tofoss/aoc-go/2025/day04"
 	_ "github.com/tofoss/aoc-go/2025/day05"
 	_ "github.com/tofoss/aoc-go/2025/day06"
+	_ "github.com/tofoss/aoc-go/2025/day07"
+	"github.com/tofoss/aoc-go/pkg/aoc"
 	"github.com/tofoss/aoc-go/pkg/registry"
 )
 
@@ -73,10 +74,11 @@ func runDay(year, day, part int, useExample bool, testInput string) error {
 	selectedEmoji := emoji[(day-1)%len(emoji)]
 
 	runPart1, runPart2 := true, true
-	if part == 1 {
+	switch part {
+	case 1:
 		runPart1 = true
 		runPart2 = false
-	} else if part == 2 {
+	case 2:
 		runPart1 = false
 		runPart2 = true
 	}

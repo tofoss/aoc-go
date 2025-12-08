@@ -4,6 +4,24 @@ type Point struct {
 	Y, X int
 }
 
+func (p *Point) Down() Point {
+	return Point{p.Y + Adjecent.Bottom.Y, p.X + Adjecent.Bottom.X}
+}
+
+func (p *Point) DownLeft() Point {
+	return Point{p.Y + Adjecent.BottomLeft.Y, p.X + Adjecent.BottomLeft.X}
+}
+
+func (p *Point) DownRight() Point {
+	return Point{p.Y + Adjecent.BottomRight.Y, p.X + Adjecent.BottomRight.X}
+}
+
+func OutOfBounds[T any](point Point, matrix [][]T) bool {
+	rows := len(matrix) - 1
+	columns := len(matrix[0]) - 1
+	return point.OffGrid(rows, columns)
+}
+
 func (p *Point) OffGrid(rows, columns int) bool {
 	if rows < 1 || columns < 1 {
 		return true
